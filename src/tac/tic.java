@@ -7,6 +7,7 @@ package tac;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.Timer;
@@ -37,6 +38,8 @@ public class tic extends javax.swing.JFrame {
         tiempo=new Timer(25, new Loading());
         tiempo.start();
         btnInicio.setEnabled(false);
+        
+        
     }
     
     //Cargando
@@ -54,6 +57,7 @@ public class tic extends javax.swing.JFrame {
                 inicioJuego.show();
             }
         }
+        
     
 }
     //asignar valores a los icones de los botones
@@ -125,6 +129,18 @@ public class tic extends javax.swing.JFrame {
             Ganador.setText("Empate");
         }
     }
+        public static void aleatorio(){
+        Random r = new Random();
+        int num = r.nextInt(6) + 1;
+        //System.out.println(num);
+        if (num < 5){
+            lblJugador.setText(txtJugador1.getText());
+            //System.out.println(txtJugador1.getText()+" Con X");
+        }else{
+            //System.out.println(txtJugador2.getText()+" Con O");
+            lblJugador.setText(txtJugador2.getText());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -169,11 +185,15 @@ public class tic extends javax.swing.JFrame {
         loading = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 550));
+        setMinimumSize(new java.awt.Dimension(400, 550));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Juego.setBackground(new java.awt.Color(51, 255, 153));
-        Juego.setPreferredSize(new java.awt.Dimension(400, 500));
+        Juego.setMaximumSize(new java.awt.Dimension(400, 550));
+        Juego.setMinimumSize(new java.awt.Dimension(400, 550));
+        Juego.setPreferredSize(new java.awt.Dimension(400, 550));
 
         panelTablero.setBackground(new java.awt.Color(0, 51, 51));
         panelTablero.setPreferredSize(new java.awt.Dimension(300, 300));
@@ -285,18 +305,13 @@ public class tic extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JuegoLayout.createSequentialGroup()
                         .addGap(0, 46, Short.MAX_VALUE)
-                        .addGroup(JuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JuegoLayout.createSequentialGroup()
-                                .addComponent(panelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JuegoLayout.createSequentialGroup()
-                                .addComponent(btnRjugar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
-            .addGroup(JuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(JuegoLayout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(285, Short.MAX_VALUE)))
+                        .addComponent(panelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))
+                    .addGroup(JuegoLayout.createSequentialGroup()
+                        .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRjugar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         JuegoLayout.setVerticalGroup(
             JuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,20 +322,19 @@ public class tic extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnRjugar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(JuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JuegoLayout.createSequentialGroup()
-                    .addContainerGap(453, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(JuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(7, 7, 7)))
+                    .addComponent(btnRjugar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         getContentPane().add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         finJuego.setBackground(new java.awt.Color(255, 255, 0));
-        finJuego.setPreferredSize(new java.awt.Dimension(400, 500));
+        finJuego.setMaximumSize(new java.awt.Dimension(400, 550));
+        finJuego.setMinimumSize(new java.awt.Dimension(400, 550));
+        finJuego.setPreferredSize(new java.awt.Dimension(400, 550));
 
         Ganador.setEditable(false);
 
@@ -356,7 +370,7 @@ public class tic extends javax.swing.JFrame {
         finJuegoLayout.setVerticalGroup(
             finJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, finJuegoLayout.createSequentialGroup()
-                .addContainerGap(220, Short.MAX_VALUE)
+                .addContainerGap(270, Short.MAX_VALUE)
                 .addComponent(Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -434,7 +448,9 @@ public class tic extends javax.swing.JFrame {
         getContentPane().add(inicioJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Home.setBackground(new java.awt.Color(102, 153, 255));
-        Home.setPreferredSize(new java.awt.Dimension(400, 500));
+        Home.setMaximumSize(new java.awt.Dimension(400, 550));
+        Home.setMinimumSize(new java.awt.Dimension(400, 550));
+        Home.setPreferredSize(new java.awt.Dimension(400, 550));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tac/ttt.gif"))); // NOI18N
 
@@ -465,7 +481,7 @@ public class tic extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loading, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         getContentPane().add(Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -538,7 +554,9 @@ public class tic extends javax.swing.JFrame {
         // TODO add your handling code here:
         inicioJuego.hide();
         Juego.show();
-        lblJugador.setText(txtJugador1.getText());
+        
+        aleatorio();
+        
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void txtJugador1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJugador1KeyReleased
@@ -588,6 +606,7 @@ public class tic extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -646,11 +665,11 @@ public class tic extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblJugador;
+    public static javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblXO;
     private javax.swing.JProgressBar loading;
     private javax.swing.JPanel panelTablero;
-    private javax.swing.JTextField txtJugador1;
-    private javax.swing.JTextField txtJugador2;
+    public static javax.swing.JTextField txtJugador1;
+    public static javax.swing.JTextField txtJugador2;
     // End of variables declaration//GEN-END:variables
 }
